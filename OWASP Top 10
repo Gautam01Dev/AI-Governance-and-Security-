@@ -1,0 +1,106 @@
+# Create OWASP Top 10 for LLM Applications (2025) Markdown File
+import pypandoc
+
+markdown_content = """
+# OWASP Top 10 for LLM Applications (2025)
+
+## Overview
+This document summarizes the OWASP Top 10 risks for Large Language Model (LLM) applications (2025 edition).
+
+---
+
+## LLM01 – Prompt Injection
+Attackers manipulate prompts to override system instructions or trigger unintended behavior.
+
+**Risks:** Data leakage, tool misuse, privilege escalation  
+**Mitigations:** Input validation, prompt isolation, tool-level authorization, monitoring
+
+---
+
+## LLM02 – Sensitive Information Disclosure
+The LLM exposes confidential data such as PII, credentials, or proprietary information.
+
+**Risks:** Privacy breaches, compliance violations  
+**Mitigations:** Data minimization, DLP filtering, strict access control, output validation
+
+---
+
+## LLM03 – Supply Chain Vulnerabilities
+Risks introduced via compromised models, datasets, libraries, adapters, or infrastructure.
+
+**Risks:** Backdoors, bias, malicious logic  
+**Mitigations:** AI-SBOM, artifact signing, dependency scanning, vendor validation, runtime monitoring
+
+---
+
+## LLM04 – Data & Model Poisoning
+Training or fine-tuning data is maliciously manipulated to alter model behavior.
+
+**Risks:** Hidden triggers, biased outputs, compromised integrity  
+**Mitigations:** Data provenance tracking, dataset validation, anomaly detection, red teaming
+
+---
+
+## LLM05 – Improper Output Handling
+LLM output is trusted and executed without validation or sanitization.
+
+**Risks:** XSS, SQL injection, RCE, system compromise  
+**Mitigations:** Treat output as untrusted, context-aware encoding, sandboxing, validation
+
+---
+
+## LLM06 – Excessive Agency
+AI is given excessive autonomy or system privileges.
+
+**Risks:** Unauthorized deployments, financial loss, infrastructure damage  
+**Mitigations:** Least privilege, scoped credentials, human-in-the-loop, approval workflows
+
+---
+
+## LLM07 – System Prompt Leakage
+Internal system instructions or hidden prompts are exposed.
+
+**Risks:** Guardrail bypass, targeted exploitation  
+**Mitigations:** Prompt hardening, externalized safety logic, monitoring, blocking reveal attempts
+
+---
+
+## LLM08 – Vector & Embedding Weaknesses
+Security flaws in RAG systems, embeddings, or vector databases.
+
+**Risks:** Cross-tenant data leakage, embedding inversion, poisoning  
+**Mitigations:** Access control, tenant isolation, encryption, monitoring
+
+---
+
+## LLM09 – Misinformation
+The model generates plausible but incorrect or misleading content.
+
+**Risks:** Poor decisions, reputational damage, regulatory exposure  
+**Mitigations:** Source grounding, fact-checking, domain constraints, human review
+
+---
+
+## LLM10 – Unbounded Consumption
+Unlimited token usage or recursive calls exhaust resources.
+
+**Risks:** Denial of service, cloud cost spikes  
+**Mitigations:** Rate limits, quotas, token caps, usage monitoring, circuit breakers
+
+---
+
+## Key Principle
+Treat AI as an untrusted component and apply Zero Trust, least privilege, validation, monitoring, and governance across the entire AI lifecycle.
+"""
+
+output_file = "/mnt/data/OWASP_LLM_Top_10_2025_Summary.md"
+
+pypandoc.convert_text(
+    markdown_content,
+    'md',
+    format='md',
+    outputfile=output_file,
+    extra_args=['--standalone']
+)
+
+output_file
